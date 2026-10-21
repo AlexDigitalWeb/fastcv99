@@ -148,9 +148,14 @@
             margin: 0 auto; transition: all 0.3s ease; transform-origin: top center;
         }
 
-        @media (max-width: 1280px) { #cv-preview-container { transform: scale(0.75); margin-top: -40px; margin-bottom: -80px; } }
-        @media (max-width: 1024px) { #cv-preview-container { transform: scale(0.60); margin-top: -70px; margin-bottom: -100px; } }
-        @media (max-width: 640px) { #cv-preview-container { transform: scale(0.42); margin-top: -120px; margin-bottom: -160px; } }
+        /* --- OTTIMIZZAZIONE MOBILE: NASCONDE L'ANTEPRIMA DA CELLULARE E ADATTA I PULSANTI --- */
+        @media (max-width: 1023px) {
+            #builder-left { width: 100% !important; height: 100% !important; border-right: none !important; }
+            #builder-right { display: none !important; } /* Nasconde l'anteprima su mobile durante la compilazione */
+        }
+
+        @media (max-width: 1280px) and (min-width: 1024px) { #cv-preview-container { transform: scale(0.75); margin-top: -40px; margin-bottom: -80px; } }
+        @media (max-width: 1024px) and (min-width: 768px) { #cv-preview-container { transform: scale(0.60); margin-top: -70px; margin-bottom: -100px; } }
 
         /* --- TEMI COLORI CV --- */
         .theme-blue .cv-header { background-color: #1e3a8a; } .theme-blue .cv-header-accent { color: #60a5fa; } .theme-blue .cv-title-border { border-bottom-color: #2563eb; } .theme-blue .cv-dot { background-color: #2563eb; } .theme-blue .cv-text-accent { color: #2563eb; } .theme-blue .cv-sidebar { background-color: #0f172a; color: #ffffff; }
@@ -269,29 +274,29 @@
     <div id="view-builder" class="view-hidden w-full h-full flex flex-col lg:flex-row overflow-hidden bg-gray-950">
         
         <!-- LEFT COLUMN: EDITOR -->
-        <div id="builder-left" class="w-full lg:w-[45%] h-1/2 lg:h-full bg-[#0a0f1c] border-r border-blue-900/30 flex flex-col z-10 no-print shadow-[10px_0_30px_rgba(0,0,0,0.8)] relative">
+        <div id="builder-left" class="w-full lg:w-[45%] h-full bg-[#0a0f1c] border-r border-blue-900/30 flex flex-col z-10 no-print shadow-[10px_0_30px_rgba(0,0,0,0.8)] relative">
             <div class="absolute top-0 right-0 w-1 h-full bg-gradient-to-b from-transparent via-blue-500/20 to-transparent"></div>
 
-            <div class="px-6 py-4 bg-gray-950 border-b border-blue-900/50 text-white flex justify-between items-center shrink-0 z-20">
-                <div class="flex items-center gap-4">
+            <div class="px-4 md:px-6 py-3 bg-gray-950 border-b border-blue-900/50 text-white flex justify-between items-center shrink-0 z-20">
+                <div class="flex items-center gap-3">
                     <button onclick="switchView('view-landing')" class="w-8 h-8 rounded bg-gray-900 border border-gray-700 hover:border-blue-500 text-gray-400 hover:text-blue-400 flex items-center justify-center transition-all">
                         <i class="fa-solid fa-chevron-left text-sm"></i>
                     </button>
-                    <div class="flex items-center gap-2">
-                        <i class="fa-solid fa-bolt text-blue-500"></i>
-                        <h1 class="text-xl font-black tracking-tighter">FASTCV<span class="text-blue-500">99.IT</span></h1>
+                    <div class="flex items-center gap-1.5">
+                        <i class="fa-solid fa-bolt text-blue-500 text-sm"></i>
+                        <h1 class="text-lg md:text-xl font-black tracking-tighter">FASTCV<span class="text-blue-500">99.IT</span></h1>
                     </div>
                 </div>
 
-                <!-- NUOVO LINK STRIPE AGGIORNATO -->
+                <!-- PULSANTE ADATTATO E OTTIMIZZATO PER MOBILE -->
                 <div id="payment-action-container">
-                    <a id="stripe-pay-btn" href="https://buy.stripe.com/3cI5kC8aUgVt530f7JdjO01" class="btn-neon-pulse flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded font-bold text-sm transition-all border border-blue-400 no-print">
-                        <i class="fa-solid fa-lock"></i> Scarica PDF (1,99€)
+                    <a id="stripe-pay-btn" href="https://buy.stripe.com/3cI5kC8aUgVt530f7JdjO01" class="btn-neon-pulse flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white px-3.5 py-1.5 md:px-5 md:py-2 rounded font-bold text-xs md:text-sm transition-all border border-blue-400 no-print shadow-md">
+                        <i class="fa-solid fa-lock text-xs"></i> <span>Scarica PDF (1,99€)</span>
                     </a>
                 </div>
             </div>
 
-            <div class="p-6 overflow-y-auto flex-grow" id="cv-form-container">
+            <div class="p-4 md:p-6 overflow-y-auto flex-grow" id="cv-form-container">
                 <form id="cv-form" class="space-y-8">
                     
                     <section class="space-y-4 bg-gray-900/50 p-5 rounded-lg border border-gray-800">
@@ -392,8 +397,8 @@
             </div>
         </div>
 
-        <!-- RIGHT COLUMN: PREVIEW A4 -->
-        <div id="builder-right" class="w-full lg:w-[55%] h-1/2 lg:h-full bg-gray-900 overflow-y-auto p-4 md:p-8 flex justify-center relative inner-shadow tech-grid-bg">
+        <!-- RIGHT COLUMN: PREVIEW A4 (Nascosta su smartphone per occupare lo spazio utile) -->
+        <div id="builder-right" class="w-full lg:w-[55%] h-full bg-gray-900 overflow-y-auto p-4 md:p-8 flex justify-center relative inner-shadow tech-grid-bg">
             
             <div id="cv-preview-container" class="relative z-10 mt-8 mb-20">
                 
@@ -734,7 +739,7 @@
                 const profileVariants = [
                     `${title} DINAMICO E RISOLUTIVO, CON UNA SOLIDA FORMAZIONE E ANNI DI ESPERIENZA SUL CAMPO. DOTATO DI OTTIME CAPACITÀ DI PROBLEM SOLVING E ATTITUDINE AL LAVORO IN TEAM.`,
                     `PROFILO PROFESSIONALE ORIENTATO AI RISULTATI, SPECIALIZZATO NEL RUOLO DI ${title}. UNISCO COMPETENZE TECNICHE RIGOROSE A UNA FORTE VISIONE STRATEGICA PER MASSIMIZZARE I SUCCESSI AZIENDALI.`,
-                    `ESPERTO ${title} CON UNA SPICCATA PASSIONE PER L'INNOVAZIONE E IL MIGLIORAMENTO CONTINUO. CAPACE DI GESTIRE PROGETTI COMPLESSI IN CONTESTI ALTAMENTE COMPETITIVI.`
+                    `ESPERTO ${title} CON UNA SPICCATA PASSIONE PER L'INNOVAZIONE E IL MIGLIORAMENTO CONTINUO. CAPACE DI GESTIRE PROCESSI COMPLESSI IN CONTESTI ALTAMENTE COMPETITIVI.`
                 ];
                 const aiText = profileVariants[Math.floor(Math.random() * profileVariants.length)];
                 textarea.value = aiText;
@@ -877,8 +882,8 @@
 
             const container = document.getElementById('payment-action-container');
             container.innerHTML = `
-                <button onclick="window.print()" class="btn-neon-pulse flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-5 py-2 rounded font-bold text-sm transition-all border border-emerald-400 no-print shadow-lg">
-                    <i class="fa-solid fa-download"></i> Scarica PDF Definitivo
+                <button onclick="window.print()" class="btn-neon-pulse flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-1.5 md:px-5 md:py-2 rounded font-bold text-xs md:text-sm transition-all border border-emerald-400 no-print shadow-lg">
+                    <i class="fa-solid fa-download text-xs"></i> <span>Scarica PDF Definitivo</span>
                 </button>
             `;
         }
