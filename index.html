@@ -148,10 +148,10 @@
             margin: 0 auto; transition: all 0.3s ease; transform-origin: top center;
         }
 
-        /* --- OTTIMIZZAZIONE MOBILE: NASCONDE L'ANTEPRIMA DA CELLULARE E ADATTA I PULSANTI --- */
+        /* --- OTTIMIZZAZIONE MOBILE --- */
         @media (max-width: 1023px) {
             #builder-left { width: 100% !important; height: 100% !important; border-right: none !important; }
-            #builder-right { display: none !important; } /* Nasconde l'anteprima su mobile durante la compilazione */
+            #builder-right { display: none !important; } 
         }
 
         @media (max-width: 1280px) and (min-width: 1024px) { #cv-preview-container { transform: scale(0.75); margin-top: -40px; margin-bottom: -80px; } }
@@ -288,7 +288,7 @@
                     </div>
                 </div>
 
-                <!-- PULSANTE ADATTATO E OTTIMIZZATO PER MOBILE -->
+                <!-- PULSANTE STRIPE AGGIORNATO -->
                 <div id="payment-action-container">
                     <a id="stripe-pay-btn" href="https://buy.stripe.com/3cI5kC8aUgVt530f7JdjO01" class="btn-neon-pulse flex items-center gap-1.5 bg-blue-600 hover:bg-blue-500 text-white px-3.5 py-1.5 md:px-5 md:py-2 rounded font-bold text-xs md:text-sm transition-all border border-blue-400 no-print shadow-md">
                         <i class="fa-solid fa-lock text-xs"></i> <span>Scarica PDF (1,99€)</span>
@@ -397,7 +397,7 @@
             </div>
         </div>
 
-        <!-- RIGHT COLUMN: PREVIEW A4 (Nascosta su smartphone per occupare lo spazio utile) -->
+        <!-- RIGHT COLUMN: PREVIEW A4 -->
         <div id="builder-right" class="w-full lg:w-[55%] h-full bg-gray-900 overflow-y-auto p-4 md:p-8 flex justify-center relative inner-shadow tech-grid-bg">
             
             <div id="cv-preview-container" class="relative z-10 mt-8 mb-20">
@@ -836,7 +836,7 @@
                             ${eduHTML ? `<section><h3 class="text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 cv-title-border pb-1 mb-3">Formazione</h3><div>${eduHTML}</div></section>` : ''}
                         </div>
                     </div>
-                    <div class="w-full text-center pb-4 pt-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-auto opacity-60">Generato con FASTCV99.IT</div>
+                    <div class="w-full text-center pb-4 pt-2 text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-auto opacity-60">FASTCV99.IT</div>
                 `;
             } else if (selectedTemplateId === 'sidebar') {
                 cvContent.innerHTML = `
@@ -863,7 +863,7 @@
                                 ${expHTML ? `<section><h3 class="text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 cv-title-border pb-1 mb-3">Esperienza</h3><div class="space-y-4">${expHTML}</div></section>` : ''}
                                 ${eduHTML ? `<section><h3 class="text-sm font-black uppercase tracking-widest text-slate-900 border-b-2 cv-title-border pb-1 mb-3">Formazione</h3><div>${eduHTML}</div></section>` : ''}
                             </div>
-                            <div class="w-full text-center pt-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest opacity-60">Generato con FASTCV99.IT</div>
+                            <div class="w-full text-center pt-6 text-[10px] font-bold text-slate-400 uppercase tracking-widest opacity-60">FASTCV99.IT</div>
                         </div>
                     </div>
                 `;
